@@ -10,6 +10,17 @@ public class PlayerControler : MonoBehaviour
     void Start()
     {
         playerRigid = transform.GetComponent<Rigidbody>();
+
+        //playerRigid = null;
+
+        Debug.Assert(playerRigid != null);
+
+        if (playerRigid == null)
+        {
+            Debug.LogError("플레이어의 rigidbody 컴포넌트를 찾을 수 없습니다.");
+        }
+
+        GFunc.Log("이거로그 그대로 잘 찍힌다.");
     }
 
     void Update()

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+//using UnityEngine.UI;
+//using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject gameOverUi = default;
-    public Text timeText = default;
-    public Text recordText = default;
+    public GameObject timeText = default;
+    public GameObject recordText = default;
 
     private float surviveTime = default;
     private bool isGameOver = default;
@@ -27,12 +27,13 @@ public class GameManager : MonoBehaviour
         if(isGameOver == false)
         {
             surviveTime += Time.deltaTime;
-            timeText.text = "Time: " + (int) surviveTime;
+            timeText.SetText(string.Format("Time : {0}", (int)surviveTime));
+            //timeText.text = "Time: " + (int) surviveTime;
         }
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene("PlayScene");
+                GFunc.LoadScene("PlayScene");
             }
         
     }
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("BestTime", bestTime);
         }
 
-        recordText.text = string.Format("Best Time : {0}", (int)bestTime);
+        timeText.SetText(string.Format("Best Time : {0}", (int)bestTime));
+        //recordText.text = string.Format("Best Time : {0}", (int)bestTime);
     }
 }
